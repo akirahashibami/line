@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Line
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.generators.template_engine = :slim
     config.load_defaults 5.2
 
     config.time_zone = 'Tokyo'

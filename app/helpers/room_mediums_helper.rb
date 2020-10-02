@@ -1,0 +1,2 @@
+module RoomMediumsHelper
+end

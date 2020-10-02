@@ -1,0 +1,2 @@
+module RoomAlbumsHelper
+end

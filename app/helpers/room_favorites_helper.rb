@@ -1,0 +1,2 @@
+module RoomFavoritesHelper
+end
