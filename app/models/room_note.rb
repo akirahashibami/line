@@ -1,0 +1,2 @@
+class RoomNote < ApplicationRecord
+end

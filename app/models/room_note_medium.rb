@@ -1,0 +1,2 @@
+class RoomNoteMedium < ApplicationRecord
+end

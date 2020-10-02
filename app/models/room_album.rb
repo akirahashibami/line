@@ -1,0 +1,2 @@
+class RoomAlbum < ApplicationRecord
+end
