@@ -3,5 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable
+         :confirmable, :lockable, :timeoutable,
+         authentication_keys: [:login]
+  include DeviseTokenAuth::Concerns::User
+
 end
