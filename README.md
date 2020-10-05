@@ -1,24 +1,13 @@
-# README
+一旦メモ書きに使います・・・
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### トークルーム
 
-Things you may want to cover:
+- 自身が他の友達をフォロー（友達追加）した時点でトークルームが作られる
+- その時点ではタイトル部分には相手の名前が表示される
+- もしタイトルを入力せず、複数ユーザーのトークルームを作ったならば、タイトル部分には参加しているユーザーの名前が表示される
+- タイトルを入力してルームを作ったならば、参加している全員が見ているタイトルはその名前になる
+- 検索の時はタイトルのあるトークルームの検索と、フォローしているユーザーの検索を行う
+- 表示した後にクリックされればそのトークルーム、あるいはユーザーとのトークルームのトークindexを表示させる
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### css
+width: max-content;　要素の幅で合わせる　かなり沼
