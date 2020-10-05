@@ -1,24 +1,7 @@
-# README
+一旦メモ書きに使います・・・
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## トークルーム
+- 自身が他の友達をフォロー（友達追加）した時点でトークルームが作られる
+- その時点ではタイトル部分には相手の名前が表示される
+- もしタイトルを入力せず、複数ユーザーのトークルームを作ったならば、タイトル部分には参加しているユーザーの名前が表示される
+- タイトルを入力してルームを作ったならば、参加している全員が見ているタイトルはその名前になる
