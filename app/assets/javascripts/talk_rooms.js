@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  console.log('hi');
-
   // // サイドバーの設定を表示させる
   // 1.クックイベントの設定
   $(document).on('click', function(e){
