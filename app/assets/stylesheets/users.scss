@@ -2,45 +2,89 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin form-box{
+  width: 500px;
+  height: 100vh;
+  border-right: 1px solid rgba(66, 66, 66, .6);
+  padding-right: 50px;
+  margin: 70px 50px;
+}
+
+@mixin title-css{
+  color: #00bb00;
+  text-align: center;
+  margin-bottom: 7%;
+  font-size: 2rem;
+  font-family: 'Rubik', sans-serif;
+}
+
+@mixin form-field-css{
+  position: relative;
+  width: 300px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-bottom: 2%;
+
+  input{
+    width: 100%;
+    font-size: .8rem;
+    padding: 12px;
+    background-color: #313131;
+    outline: none;
+    color: #eee;
+    background: none;
+    &:foucus{
+      background-color: #313131;
+    }
+  }
+}
+
+@mixin submit-action{
+  margin-bottom: 2%;
+  text-align: center;
+  input{
+    font-size: .8rem;;
+    color: #eee;
+    background: #ddd;
+    border-radius: 5px;
+    width: 300px;
+    height: 45px;
+    outline: none;
+  }
+}
+
+@mixin submit-hover{
+  margin-bottom: 2%;
+  text-align: center;
+  input{
+    font-size: .8rem;;
+    color: #eee;
+    background: #00bb00;
+    border-radius: 5px;
+    width: 300px;
+    height: 45px;
+    outline: none;
+
+    &:hover{
+      background: #22bb22;
+    }
+  }
+}
+
 .content{
   background-color: #313131;
   display: flex;
 
   .session{
-    width: 500px;
-    height: 100vh;
-    border-right: 1px solid rgba(66, 66, 66, .6);
-    padding-right: 50px;
-    margin: 70px 50px;
+    @include form-box;
 
     &__title{
-      color: #00bb00;
-      text-align: center;
-      margin-bottom: 7%;
-      font-size: 2rem;
-      font-family: 'Rubik', sans-serif;
+      @include title-css;
     }
 
     &__field{
-      position: relative;
-      width: 300px;
-      border: 1px solid #666;
-      border-radius: 5px;
-      margin: 0 auto;
-      margin-bottom: 2%;
-
-      input{
-        width: 100%;
-        font-size: .8rem;
-        padding: 12px;
-        background-color: #313131;
-        outline: none;
-        color: #eee;
-        background: none;
-        &:foucus{
-          background-color: #313131;
-        }
-      }
+      @include form-field-css;
 
       #pass_check{
         display: none;
@@ -58,35 +102,11 @@
     }
 
     &__actions{
-      margin-bottom: 2%;
-      text-align: center;
-      input{
-        font-size: .8rem;;
-        color: #eee;
-        background: #ddd;
-        border-radius: 5px;
-        width: 300px;
-        height: 45px;
-        outline: none;
-      }
+      @include submit-action;
     }
 
     &__hover{
-      margin-bottom: 2%;
-      text-align: center;
-      input{
-        font-size: .8rem;;
-        color: #eee;
-        background: #00bb00;
-        border-radius: 5px;
-        width: 300px;
-        height: 45px;
-        outline: none;
-
-        &:hover{
-          background: #22bb22;
-        }
-      }
+      @include submit-hover;
     }
 
     &__remenber{
@@ -102,20 +122,75 @@
 
 
   .sign-up{
-    width: 500px;
-    height: 100vh;
-    border-right: 1px solid rgba(66, 66, 66, .6);
-    padding-right: 50px;
-    margin: 70px 50px;
+    @include form-box;
+
+    &__title{
+      @include title-css;
+    }
+
+    #error_explanation{
+      width: 300px;
+      font-size: 0.75rem;
+      color: #ff425f;
+      margin: 0 auto;
+      line-height: 1.7;
+      margin-bottom: 3%;
+
+      ul{
+        list-style: none;
+      }
+    }
 
     &__field{
+      @include form-field-css;
 
+      &--name,
+      &--email,
+      &--password,
+      &--password_confirmation {
+        border-bottom: 1px solid #666;
+      }
     }
 
     &__birth{
+      font-size: .8rem;
       display: flex;
+      width: 300px;
+      color: #999;
+      margin: 0 auto;
+      margin-top: 3%;
+
       div{
-        margin-right: 5%;
+        width: 10%;
+        margin: -10px 12% 3% 0;
+
+        select{
+          color: #eee;
+          outline: none;
+          border: 1px solid #666;
+          padding: 5px;
+          border-radius: 2px;
+        }
+      }
+    }
+
+    &__actions{
+      @include submit-action;
+    }
+
+    &__hover{
+      @include submit-hover;
+    }
+
+    &__login{
+      width: 300px;
+      font-size: .8rem;
+      color: #999;
+      margin: 0 auto;
+      text-align: center;
+
+      a{
+        color: #bbb;
       }
     }
   }

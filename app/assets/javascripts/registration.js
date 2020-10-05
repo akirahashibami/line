@@ -1,5 +1,33 @@
 $(document).ready(function(){
 
+  // ログイン画面で何も入力しないとボタンを押せないようにする
+  const $submitBtn = $('#submit')
+  const $session_actions = $('.sign-up__actions');
+  $(window).load(function(){
+    $($submitBtn).prop('disabled', true);
+  });
+  $('#new_user input').on('keyup keydown', function(){
+    if (
+      $('#new_user input[type="email"]').val() !== "" &&
+      $('#new_user input[type="password"]').val() !== "" &&
+      $('#new_user input[name="user[phone_number]"]').val() !== ""
+    ) {
+      $submitBtn.prop('disabled', false);
+      $session_actions.addClass("sign-up__hover");
+      $session_actions.removeClass("sign-up__actions");
+    } else {
+      $submitBtn.prop('disabled', true);
+      $session_actions.addClass("sign-up__actions");
+      $session_actions.removeClass("sign-up__hover")
+    }
+  });
+
+
+
+
+
+
+
   // ユーザーの誕生日の閏年を動的に変化させる
   // 誕生日の配列を宣言
   let birth_year = [];
@@ -32,14 +60,13 @@ $(document).ready(function(){
       text: birth_month[i].txt
     }).appendTo('#select-month');
   }
-
   // 年、もしくは月のセレクトボックスの中身に変更があったら日の内容を変更する
   $('#select-year, #select-month').change(function(){
     // 日が入っているセレクトボックスの中身を空っぽにする
     $('#select-day').empty();
     // 日が入るセレクトボックスにデフォルト値の'----'をいれる
     $("<option>", {
-      text: '----'
+      text: '------'
     }).appendTo('#select-day');
     // 2月の日にち、すなわちmonths[1]を28にセットし直す
     months[1] = 28;
@@ -47,7 +74,7 @@ $(document).ready(function(){
     let year = $('#select-year').val();
     let month = $('#select-month').val();
     // yearとmonth共に数字が入力されている。すなわち共に'----'出ない時に実行
-    if (year !== '----' && month !== '----') {
+    if (year !== '------' && month !== '------') {
       // monthに２月が選択されている時実行
       if (month == 2) {
         // yearが閏年の時、２月の日付が格納されているmonths[1]の値を29にする
@@ -69,4 +96,8 @@ $(document).ready(function(){
       };
     };
   });
+
+
+
+
 });

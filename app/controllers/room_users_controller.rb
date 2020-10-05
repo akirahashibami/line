@@ -1,5 +1,9 @@
 class RoomUsersController < ApplicationController
 
+  def index
+    # code
+  end
+
   def create
     # code
   end

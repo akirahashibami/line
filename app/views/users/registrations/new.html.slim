@@ -1,43 +1,33 @@
 .content
   .sign-up
+    h2.sign-up__title
+      | LINE
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       == render "users/shared/error_messages", resource: resource
-      .sign-up__field--name
-        = f.label :name
-        br
-        = f.text_field :name, placeholder: '名前'
-      .sign-up__field--email
-        = f.label :email
-        br
-        = f.email_field :email, placeholder: 'メールアドレス'
-      .sign-up__field--password
-        = f.label :password
-        - if @minimum_password_length
-          em
-            | (
-            = @minimum_password_length
-            |  characters minimum)
-        br
-        = f.password_field :password, placeholder: 'パスワード(6文字以上)'
-      .sign-up__field--password-confirmation
-        = f.label :password_confirmation
-        br
-        = f.password_field :password_confirmation, placeholder: 'パスワードを再入力'
-      p
-      | birth_day
+      .sign-up__field
+        = f.text_field :name, placeholder: '名前', class: "sign-up__field--name"
+        = f.email_field :email, placeholder: 'メールアドレス', class: "sign-up__field--email"
+        = f.password_field :password, placeholder: 'パスワード(6文字以上)', class: "sign-up__field--password"
+        = f.password_field :password_confirmation, placeholder: 'パスワードを再入力', class: "sign-up__field--password_confirmation"
+        = f.text_field :phone_number, placeholder: '電話番号(ハイフン無し)', id: 'phone_number', class: "sign-up__field--phone_number"
+      .sign-up__birth
+        p 誕生日（後から設定できます）
       .sign-up__birth
         .sign-up__birth--year
-          = f.label :year
+          = f.label :"年"
           br
-          = f.select :year, ["----"], {}, {class: "select-year", id: "select-year"}
+          = f.select :year, ["------"], {}, {class: "select-year", id: "select-year"}
         .sign-up__birth--month
-          = f.label :month
+          = f.label :"月"
           br
-          = f.select :month, ["----"], {}, {class: "select-month", id: "select-month"}
+          = f.select :month, ["------"], {}, {class: "select-month", id: "select-month"}
         .sign-up__birth--day
-          = f.label :day
+          = f.label :"日"
           br
-          = f.select :day, ["----"], {}, {class: "select-day", id: "select-day"}
+          = f.select :day, ["------"], {}, {class: "select-day", id: "select-day"}
       .sign-up__actions
-        = f.submit "登録する"
-    == render "users/shared/links"
+        = f.submit "登録する", id: "submit", disabled: 'false'
+      .sign-up__login
+        p
+          | すでに登録してある方は
+          = link_to "こちら", new_user_session_path

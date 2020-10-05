@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     end
     resources :room_albums,     only: [:create, :update, :destroy]
     resources :room_events,     only: [:create, :update, :destroy]
-    resource  :room_user,       only: [:create, :destroy]
+    resource  :room_user,       only: [:index, :create, :destroy]
     resource  :room_favorites,  only: [:create, :destroy]
   end
 
