@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # ルートページ
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   # ユーザーアクション
 
   #検索機能
+  get '/search', to: 'search#search'
 
   #新規会員登録の時のルーティングエラーを修正
   get '/users', to: redirect("/user/sign_up")
