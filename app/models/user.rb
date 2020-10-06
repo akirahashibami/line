@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  validates :name, presence: true, length: { maximum: 10 }
+  validates :name, presence: true, length: { maximum: 20 }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -10,6 +10,8 @@ class User < ApplicationRecord
   # include DeviseTokenAuth::Concerns::User
 
   validates :phone_number, presence: true, length: { in: 10..12 }, numericality: :only_integer
+
+  has_one_attached :profile_image
 
   has_many :user_posts,       dependent: :destroy
   has_many :post_comments,    dependent: :destroy

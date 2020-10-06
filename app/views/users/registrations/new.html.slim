@@ -5,7 +5,7 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       == render "users/shared/error_messages", resource: resource
       .sign-up__field
-        = f.text_field :name, placeholder: '名前', class: "sign-up__field--name"
+        = f.text_field :name, placeholder: '名前(20文字以内)', class: "sign-up__field--name"
         = f.email_field :email, placeholder: 'メールアドレス', class: "sign-up__field--email"
         = f.password_field :password, placeholder: 'パスワード(6文字以上)', class: "sign-up__field--password"
         = f.password_field :password_confirmation, placeholder: 'パスワードを再入力', class: "sign-up__field--password_confirmation"

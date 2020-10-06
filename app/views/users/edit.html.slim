@@ -1,0 +1,54 @@
+.content
+  .user-edit
+    .user-edit__sidebar
+      = link_to '基本設定'
+      = link_to '通知'
+      = link_to 'トーク'
+      = link_to '通話'
+      = link_to '友達管理'
+      = link_to 'Keep'
+      = link_to '詳細設定'
+      = link_to 'ショートカット'
+      = link_to 'LINE情報'
+    .user-edit__basic-set
+      = form_with model: @user, method: :patch, local: true do |f|
+        .user-edit__basic-set--top
+          .image
+            = render partial: "users/attachment", locals: { user: @user}
+            #image-edit
+              i(name="image" id="user-edit-image" class="fas fa-camera")
+          .base
+            .name
+              p.left 名前
+              = f.text_field :name, id: "user-edit-name", class: "right fa", :placeholder => "名前を入力　\uf304"
+            .introduction
+              p.left ステータスメッセージ
+              = f.text_field :introduction, id: "user-edit-introduction", class: "right fa", :placeholder => "未設定　\uf304"
+            .id
+              p.left ID
+            .mail
+              p.left メール
+              p.right = @user.email
+            .other
+              p.left その他
+              .right
+                = link_to '#' do
+                  i.fas.fa-home
+                  | ホーム
+                span |
+                = link_to '#' do
+                  i.fas.fa-bookmark
+                  | Keep
+        .user-edit__basic-set--language
+          p.language 言語
+          p#ranguage-edit 日本語
+        .user-edit__basic-set--font
+          p.font フォント
+          p#font-edit 既定フォント
+        .user-edit__basic-set--login
+          p.login ログイン
+          span 自動ログイン
+        .user-edit__basic-set--screen
+          p.screen-mode 画面表示モード
+          span.note 一部の画面ではダークモードを利用できません
+          span システム設定と同期

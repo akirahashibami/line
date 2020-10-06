@@ -31,7 +31,7 @@
           i(name="other" id="talk-room-other" class="fas fa-ellipsis-h")
           p.other-fukidashi.fukidashi 設定
           .user-other
-            = link_to '設定', '#'
+            = link_to '設定', edit_user_path(current_user.id), :onclick=>"window.open(this.href, '設定', 'height=470, width=660');return false;"
             = link_to 'ヘルプ', '#'
             = link_to 'LINE情報', '#', class: 'LINE'
             = link_to 'ログアウト', destroy_user_session_path, method: :delete
@@ -39,3 +39,4 @@
     .talk-room-index__talk-rooms
       .search
         = render partial: "layouts/search"
+    .talk-room-index__talk

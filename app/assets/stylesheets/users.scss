@@ -76,6 +76,8 @@
   background-color: #313131;
   display: flex;
 
+  // ログイン画面　ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  // ログイン画面　ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   .session{
     @include form-box;
 
@@ -121,6 +123,8 @@
   }
 
 
+  // 新規登録画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  // 新規登録画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   .sign-up{
     @include form-box;
 
@@ -191,6 +195,141 @@
 
       a{
         color: #bbb;
+      }
+    }
+  }
+
+
+  // ユーザー編集画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  // ユーザー編集画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  .user-edit{
+    background-color: #fff;
+    display: flex;
+
+    &__sidebar{
+      width: 160px;
+      height: 100vh;
+      border-right: 1px solid #d3dae3;
+      display: flex;
+      flex-direction: column;
+
+      a{
+        padding: 11px 0 11px 18px;
+        font-size: .77rem;
+        color: #6c717a;
+        display: inline-block;
+        text-decoration: none;
+
+        &:hover{
+          color: #111;
+          background-color: #dde3eb;
+        }
+      }
+    }
+
+    &__basic-set{
+      width: 500px;
+      padding-top: 18px;
+
+      &--top{
+        display: flex;
+
+        %__basic-set-base{
+          display: flex;
+          font-size: .7rem;
+          padding-bottom: 6px;
+
+          input{
+            outline: none;
+            cursor: pointer;
+            width: max-content;
+
+            &:hover{
+              border: 1px solid #ccc;
+              margin: -1px;
+            }
+          }
+
+          .left{
+            width: 130px;
+            color: #103636;
+            font-weight: 600;
+            letter-spacing: .6px;
+          }
+
+          .right{
+            color: #288080;
+
+            span{
+              margin-right: 8px;
+              color: #ddd;
+            }
+
+            a{
+              text-decoration: none;
+              color: #288080;
+              margin-right: 8px;
+
+              i{
+                margin-right: 4px;
+              }
+            }
+          }
+        }
+
+        .image{
+          width: 26%;
+          position: relative;
+
+          img{
+            margin-left: 15px;
+            width: 100px;
+            border-radius: 50%;
+          }
+
+          #image-edit{
+            position: absolute;
+            bottom: 20px;
+            right: 22px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+
+            i{
+              font-size: .8rem;
+              color: #888;
+            }
+          }
+        }
+
+        .base{
+          .name,
+          .introduction,
+          .id,
+          .mail,
+          .other{
+            @extend %__basic-set-base;
+          }
+        }
+      }
+
+      &--laguage{
+
+      }
+      &--font{
+
+      }
+      &--login{
+
+      }
+      &--screen{
+
       }
     }
   }
