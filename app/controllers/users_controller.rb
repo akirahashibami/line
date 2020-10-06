@@ -10,7 +10,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update
+    @user.update(user_params)
+    redirect_back(fallback_location: user_path(current_user))
   end
 
   def destroy

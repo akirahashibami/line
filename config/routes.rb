@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect("/user/sign_up")
 
   # ユーザー機能
-  resources :users,             only: [:show, :edit, :upate, :destroy] do
+  resources :users,             only: [:show, :edit, :update, :destroy] do
     resources :relationships,   only: [:create, :destroy]
     get :follows,   on: :member
     get :followers, on: :member
