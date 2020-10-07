@@ -13,7 +13,7 @@ class TalkRoomsController < ApplicationController
   end
 
   def index
-    # code
+    @users = User.all
   end
 
   def edit

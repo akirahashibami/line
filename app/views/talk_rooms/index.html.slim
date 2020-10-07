@@ -37,6 +37,43 @@
             = link_to 'ログアウト', destroy_user_session_path, method: :delete
             = link_to '終了', '#'
     .talk-room-index__talk-rooms
-      .search
-        = render partial: "layouts/search"
+      .talk-rooms
+        .talk-rooms__search
+          = render partial: "layouts/search"
+        .talk-rooms__my-information
+          .talk-rooms__my-information--image
+            = render partial: "users/attachment", locals: { user: current_user}
+          .talk-rooms__my-information--name
+            p = current_user.name
+        .talk-rooms__list
+          .talk-rooms__list--groups
+            span.select-group-list グループ
+            ul
+          .talk-rooms__list--friends
+            span.select-friends-list 友だち
+            ul
+      .add-friends
+        .add-friends__content
+          .add-friends__content--search
+            i.fas.fa-user-plus
+            p 友だち検索
+          .add-friends__content--create-group
+            i.fas.fa-user-friends
+            p グループ作成
+          .add-friends__content--create-open-chat
+            i.far.fa-square
+            p オープンチャット作成
+        .add-friends__users
+          .add-friends__users--official
+            .official-account
+              span.recommended-official おすすめ公式アカウント
+              ul
+          .add-friends__users--acquaintance
+            .acquaintancers
+              span.maybe-acquaintance 知り合いかも？
+              ul
+                - @users.each do |user|
+                  li.acquaintance
+                    = render partial: 'users/attachment', locals: { user: user}
+                    p = user.name
     .talk-room-index__talk
