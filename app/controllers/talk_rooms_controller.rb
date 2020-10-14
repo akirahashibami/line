@@ -5,11 +5,10 @@ class TalkRoomsController < ApplicationController
   end
 
   def create
-    # code
+
   end
 
   def show
-    # code
   end
 
   def index
@@ -25,6 +24,6 @@ class TalkRoomsController < ApplicationController
   end
 
   def destroy
-    # code
+
   end
 end

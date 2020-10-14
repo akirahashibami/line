@@ -31,7 +31,6 @@ Rails.application.routes.draw do
 
   # ルーム機能
   resources :talk_rooms do
-    resources :talks,  only: [:create, :update]
     resources :room_media, only:  [:create, :update]
     resources :room_notes, only: [:create, :update, :destroy] do
       resources :room_note_media, only: [:create, :update]
@@ -41,6 +40,8 @@ Rails.application.routes.draw do
     resource  :room_user,       only: [:index, :create, :destroy]
     resource  :room_favorites,  only: [:create, :destroy]
   end
+
+  resources :talks,  only: [:create, :update]
 
   # 通知機能
   resources :notification, only: [:index]

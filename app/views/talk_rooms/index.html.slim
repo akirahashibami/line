@@ -2,16 +2,16 @@
   .talk-room-index
     .talk-room-index__sidebar
       .talk-room-index__sidebar--main
-        span
+        span.tab-btn.is-show
           i(name="user" id="talk-room-user" class="fas fa-user")
           p.fukidashi 友達
-        span
+        span.tab-btn
           i(name="comment" id="talk-room-comment" class="fas fa-comment-dots")
           p.fukidashi トーク
-        span
+        span.tab-btn
           i(name="user-plus" id="talk-room-user-plus" class="fas fa-user-plus")
           p.fukidashi 友達追加
-        span
+        span.tab-btn
           i(name="clock" id="talk-room-clock" class="fas fa-clock")
           p.fukidashi タイムライン
       .talk-room-index__sidebar--other
@@ -37,7 +37,7 @@
             = link_to 'ログアウト', destroy_user_session_path, method: :delete
             = link_to '終了', '#'
     .talk-room-index__talk-rooms
-      .talk-rooms
+      .talk-rooms.tab-content.is-show
         .talk-rooms__search
           = render partial: "layouts/search"
         .talk-rooms__my-information
@@ -52,7 +52,12 @@
           .talk-rooms__list--friends
             span.select-friends-list 友だち
             ul
-      .add-friends
+              - current_user.followings.each do |follower|
+                li class="follower" id="#{follower.id}"
+                  = render partial: 'users/attachment', locals: { user: follower}
+                  p = follower.name
+      .talk.tab-content
+      .add-friends.tab-content
         .add-friends__content
           .add-friends__content--search
             i.fas.fa-user-plus
@@ -73,9 +78,18 @@
               span.maybe-acquaintance 知り合いかも？
               ul
                 - @users.each do |user|
-                  li.acquaintance
-                    = render partial: 'users/attachment', locals: { user: user}
-                    p = user.name
-                    i.fas.fa-user-plus
-                    span.fukidashi 友だち追加
+                  - if user.followed_by?(current_user)
+                  - else
+                    li.acquaintance
+                      = render partial: 'users/attachment', locals: { user: user}
+                      p = user.name
+                      = link_to user_relationships_path(user.id), method: :post do
+                        i.fas.fa-user-plus
+                        span.fukidashi 友だち追加
     .talk-room-index__talk
+      .user-talks
+        #talks.user-talks__talk
+          = render partial: "users/user-talk-index"
+      .send-talk
+        .send-talk__form-field
+          = render partial: "talk_rooms/room-messages"

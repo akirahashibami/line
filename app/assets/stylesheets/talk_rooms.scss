@@ -204,7 +204,6 @@
       .talk-rooms{
         width: max-content;
         min-width: 300px;
-
         display: none;
 
         &__search{
@@ -265,8 +264,38 @@
 
         &__list{
 
+          %__rooms-list{
+            ul{
+              display: none;
+
+              li{
+                list-style: none;
+                display: flex;
+                padding: 7px 14px;
+                position: relative;
+
+                img{
+                  display: inline-block;
+                  width: 42px;
+                  height: 42px;
+                  border-radius: 50%;
+                }
+
+                p{
+                  width: 200px;
+                  margin-left: 10px;
+                  font-size: .7rem;
+                  height: 42px;
+                  line-height: 42px;
+                  color: #ddd;
+                }
+              }
+            }
+          }
+
           &--groups{
             @extend %__select;
+            @extend %__rooms-list;
             .select-group-list{
               @extend %__select-list;
               @extend %__select-ul;
@@ -274,18 +303,34 @@
           }
           &--friends{
             @extend %__select;
+            @extend %__rooms-list;
             .select-friends-list{
               @extend %__select-list;
               @extend %__select-ul;
             }
           }
+          .is-open{
+            span:after{
+              content: '\f078';
+            }
+            ul{
+              display: block;
+            }
+          }
         }
+      }
+
+      .talk{
+        width: max-content;
+        min-width: 300px;
+        padding-top: 30px;
       }
 
       .add-friends{
         width: max-content;
         min-width: 300px;
         padding-top: 30px;
+        display: none;
 
         %__friends-create-content{
           display: flex;
@@ -370,12 +415,14 @@
             }
           }
 
-          %__users{
+          %__user{
             ul{
+              display: none;
+
               li{
                 list-style: none;
                 display: flex;
-                padding: 7px 16px;
+                padding: 7px 14px;
                 position: relative;
 
                 img{
@@ -433,13 +480,25 @@
             }
           }
 
+          %__is-open{
+            .is-open{
+              span:after{
+                content: '\f078';
+              }
+              ul{
+                display: block;
+              }
+            }
+          }
+
           &--official{
             .official-account{
               .recommended-official{
                 @extend %__user-content;
               }
-              @extend %__users;
+              @extend %__user;
             }
+            @extend %__is-open;
           }
 
           &--acquaintance{
@@ -447,10 +506,15 @@
               .maybe-acquaintance{
                 @extend %__user-content;
               }
-              @extend %__users;
+              @extend %__user;
             }
+            @extend %__is-open;
           }
         }
+      }
+
+      .is-show{
+        display: block;
       }
     }
 
@@ -459,6 +523,16 @@
       width: 100%;
       height: 100vh;
       border-left: 1px solid #444;
+
+      .user-talks{}
+      .send-talk{
+        &__form-field{
+          input{
+            outline: inherit;
+            background: #fff;
+          }
+        }
+      }
     }
   }
 }
