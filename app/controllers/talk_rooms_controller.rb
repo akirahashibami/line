@@ -5,14 +5,21 @@ class TalkRoomsController < ApplicationController
   end
 
   def create
-
+  room = TalkRoom.create
+  RoomUser.create(user_id: current_user.id, talk_room_id: room.id)
+  RoomUser.create(user_id: params[:room_user][:user_id], talk_room_id: room.id)
+  redirect_to talk_room_path(room)
   end
 
   def show
+    @user = User.find(params[:user_id])
+    @room = TalkRoom.find(params[:id])
+    @talks = @room.talk
   end
 
   def index
     @users = User.where.not(id: current_user.id)
+    @room = TalkRoom.new
   end
 
   def edit
@@ -25,5 +32,11 @@ class TalkRoomsController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+
+  def talk_room_params
+    params.require(:talk_room)
   end
 end
