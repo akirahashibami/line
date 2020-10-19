@@ -1,0 +1,9 @@
+p = @user.name
+- unless @user.id == current_user.id
+  - if @is_room == true
+    = link_to "チャット", talk_room_path(@room_id ,user_id: @user.id)
+  - else
+    = form_with model: @room, url: talk_rooms_path, local: true do |f|
+      = fields_for @room_user do |ru|
+        = ru.hidden_field :user_id, value: @user.id
+      = f.submit 'チャット'

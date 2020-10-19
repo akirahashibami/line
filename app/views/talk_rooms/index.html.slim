@@ -54,8 +54,9 @@
             ul
               - current_user.followings.each do |follower|
                 li class="follower" id="#{follower.id}"
-                  = render partial: 'users/attachment', locals: { user: follower}
-                  p = follower.name
+                  = link_to user_path(follower.id) do
+                    = render partial: 'users/attachment', locals: { user: follower}
+                    p = follower.name
       .talk.tab-content
       .add-friends.tab-content
         .add-friends__content
