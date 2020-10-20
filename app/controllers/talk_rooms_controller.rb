@@ -8,6 +8,7 @@ class TalkRoomsController < ApplicationController
     room = TalkRoom.create
     RoomUser.create(user_id: current_user.id, talk_room_id: room.id)
     RoomUser.create(user_id: params[:room_user][:user_id], talk_room_id: room.id)
+    # 新規ルーム作成時に、showでparams[:user_id]を使えるようにする
     user = User.find(params[:room_user][:user_id])
     redirect_to talk_room_path(room, user_id: user)
   end
