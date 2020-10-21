@@ -17,3 +17,7 @@
 
 ### css
 width: max-content;　要素の幅で合わせる　かなり沼
+
+
+### 通話機能
+skyway 使用
