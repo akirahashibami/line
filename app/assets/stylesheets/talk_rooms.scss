@@ -538,8 +538,13 @@
 }
 
 .talk-room-show{
-  input{
+  input,
+  textarea,
+  button{
     border: 1px solid #333;
     outline: none;
+  }
+  button{
+    margin-left: 20px;
   }
 }
