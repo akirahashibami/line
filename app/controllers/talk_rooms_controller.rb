@@ -14,14 +14,34 @@ class TalkRoomsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
     @room = TalkRoom.find(params[:id])
     @talks = @room.talk
   end
 
   def index
+    unless params[:follower].blank?
+      @user = User.find_by(id: params[:follower])
+      @current_room = RoomUser.where(user_id: current_user.id)
+      @another_room = RoomUser.where(user_id: @user.id)
+      unless @user.id == current_user.id
+        @current_room.each do |cr|
+          @another_room.each do |ar|
+            # ルームが存在する時
+            if cr.talk_room_id == ar.talk_room_id
+              @is_room = true
+              @room = TalkRoom.find_by(id: cr.talk_room_id)
+              @talks = @room.talk
+            end
+          end
+        end
+        # なければ新規作成
+        unless @is_room
+          @room = TalkRoom.new
+          @room_user = RoomUser.new
+        end
+      end
+    end
     @users = User.where.not(id: current_user.id)
-    @room = TalkRoom.new
   end
 
   def edit
