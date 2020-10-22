@@ -68,21 +68,4 @@ javascript:
       }
     });
 
-    // // 友だちをクリックでトークを表示させる
-    // $('.user-talk-show').on('click',function(){
-    //   // クリックされた友だちのidを取得
-    //   // ajaxでtalk_room.indexを呼ぶ
-    //   $.ajax({
-    //     url: "talk_rooms",
-    //     type: "GET",
-    //     data: {user_id : $('#user-talk-show').data('data-id')},
-    //     datatype: "html"
-    //   })
-    //   .done(function(data){
-    //     $("#talks").html("#{j(render partial: 'user-talk-index', locals: { user: @user})}");
-    //   })
-    //   .fail(function(){
-    //     alert("error!");
-    //   })
-
   });

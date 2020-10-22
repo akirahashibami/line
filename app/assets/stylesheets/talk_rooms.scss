@@ -138,7 +138,6 @@
         margin: 0 auto;
         text-align: left;
         user-select: none;
-        padding: 5px 10px;
       }
 
       %__select-list{
@@ -179,7 +178,7 @@
           li{
             display: block;
             text-align: left;
-            padding: 0.8em 1em 0.8em 1em;
+            padding: 0.9em 1em 0.9em 1em;
             color: #888;
             cursor: pointer;
 
@@ -237,7 +236,7 @@
 
         &__my-information{
           display: flex;
-          padding: 8px 0 8px 18px;
+          padding: 8px 0 16px 18px;
 
           &:hover{
             background: #383838;
@@ -263,6 +262,7 @@
         }
 
         &__list{
+          box-sizing: border-box;
 
           %__rooms-list{
             ul{
@@ -274,20 +274,28 @@
                 padding: 7px 14px;
                 position: relative;
 
-                img{
-                  display: inline-block;
-                  width: 42px;
-                  height: 42px;
-                  border-radius: 50%;
+                &:hover{
+                  background: #383838;
                 }
 
-                p{
-                  width: 200px;
-                  margin-left: 10px;
-                  font-size: .7rem;
-                  height: 42px;
-                  line-height: 42px;
-                  color: #ddd;
+                a{
+                  display: flex;
+
+                  img{
+                    display: inline-block;
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                  }
+
+                  p{
+                    width: 200px;
+                    margin-left: 10px;
+                    font-size: .7rem;
+                    height: 42px;
+                    line-height: 42px;
+                    color: #ddd;
+                  }
                 }
               }
             }
@@ -298,7 +306,7 @@
             @extend %__rooms-list;
             .select-group-list{
               @extend %__select-list;
-              @extend %__select-ul;
+              padding: 6px 10px;
             }
           }
           &--friends{
@@ -306,7 +314,7 @@
             @extend %__rooms-list;
             .select-friends-list{
               @extend %__select-list;
-              @extend %__select-ul;
+              padding: 6px 10px;
             }
           }
           .is-open{
@@ -329,7 +337,6 @@
       .add-friends{
         width: max-content;
         min-width: 300px;
-        padding-top: 30px;
         display: none;
 
         %__friends-create-content{
