@@ -68,4 +68,49 @@ javascript:
       }
     });
 
+    // 名前で検索機能を作る
+    $(document).ready(function(){
+      const inputForm = $('#searching-form');
+      const url = location.href;
+      const searchResult = $('.resurt ul');
+
+      function builtHTML(dataFromSearchFunction){
+        let html = `<li>${dataFromSearchFunction.name}</li>`
+        searchResult.append(html);
+      }
+      function NoResult(message){
+        let html = `<li>${message}</li>`
+        searchResult.append(html);
+      }
+      // フォームに入力でイベント発火
+      inputForm.on('keyup', function(e){
+        e.preventDefault();
+        let target = $(this).val();
+        search(target);  // ajax通信はsearch()という関数に
+        console.log(target);
+      });
+      // ajax処理
+      function search(target){
+        $.ajax({
+          type: 'GET',
+          url: 'talkrooms/search',
+          data: {keyword: target},
+          dataType: 'json'
+        })
+        .done(function(data){
+          searchResult.empty(); // 再度検索した際に前のデータを消す処理
+          if (data.length !== 0){
+            data.forEach(function(data){ // dataは配列型に格納されているのでeachぶんで回す
+              builtHTML(data)
+            });
+          }else{
+            NoResult('検索結果がありません')
+          }
+        })
+        .fail(function(data){
+          alert('通信に失敗しました')
+        })
+      }
+    });
+
   });
