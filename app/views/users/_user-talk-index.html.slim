@@ -1,0 +1,15 @@
+.user-talk
+  - unless @user.blank?
+    h2 = "#{@user.name} さんとのトーク"
+    .talk-room-show__form
+      input[type="text"
+            id="talk-form"
+            data-behavior="room_speaker"
+            data-user="#{current_user.id}"
+            data-room="#{@room.id}"]
+    .talk-room-show__talks
+      #talk
+        - @talks.each do |talk|
+          p = talk.talk
+  - else
+  | トークをはじめよう！

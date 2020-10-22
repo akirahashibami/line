@@ -53,8 +53,9 @@
             span.select-friends-list 友だち
             ul
               - current_user.followings.each do |follower|
-                li class="follower" id="#{follower.id}"
-                  = link_to user_path(follower.id) do
+                li class="follower"
+                  / = link_to user_path(follower.id), id: "user-talk-show", data: { id: "#{follower.id}"}, remote: true do
+                  = link_to talk_rooms_path, class: "user-talk-show", data: { follower: "#{follower.id}"}, remote: true do
                     = render partial: 'users/attachment', locals: { user: follower}
                     p = follower.name
       .talk.tab-content

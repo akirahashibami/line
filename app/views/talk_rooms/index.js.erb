@@ -1,0 +1,10 @@
+$.ajax({
+  data: {follower: $('.user-talk-show').data('follower')}
+})
+.done(function(respons){
+  $('#talks').html("<%= j(render partial: 'users/user-talk-index', locals: { user: @user, room: @room}) %>");
+  $('#talks').html("<p>hello</p>");
+})
+.fail(function(xhr){
+  alert("error!");
+});
