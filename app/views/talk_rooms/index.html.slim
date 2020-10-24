@@ -36,29 +36,34 @@
             = link_to 'LINE情報', '#', class: 'LINE'
             = link_to 'ログアウト', destroy_user_session_path, method: :delete
             = link_to '終了', '#'
+
     .talk-room-index__talk-rooms
       .talk-rooms.tab-content.is-show
         .talk-rooms__search
           = render partial: "layouts/search"
-        .talk-rooms__my-information
-          .talk-rooms__my-information--image
-            = render partial: "users/attachment", locals: { user: current_user}
-          .talk-rooms__my-information--name
-            p = current_user.name
-        .talk-rooms__list
-          .talk-rooms__list--groups
-            span.select-group-list グループ
-            ul
-          .talk-rooms__list--friends
-            span.select-friends-list 友だち
-            ul
-              - current_user.followings.each do |follower|
-                li class="follower"
-                  / = link_to user_path(follower.id), id: "user-talk-show", data: { id: "#{follower.id}"}, remote: true do
-                  = link_to talk_rooms_path(follower: follower.id), class: "user-talk-show", data: { follower: "#{follower.id}"}, remote: true do
-                    = render partial: 'users/attachment', locals: { user: follower}
-                    p = follower.name
+        .result
+        .talk-rooms-content
+          .talk-rooms__my-information
+            .talk-rooms__my-information--image
+              = render partial: "users/attachment", locals: { user: current_user}
+            .talk-rooms__my-information--name
+              p = current_user.name
+          .talk-rooms__list
+            .talk-rooms__list--groups
+              span.select-group-list グループ
+              ul
+            .talk-rooms__list--friends
+              span.select-friends-list 友だち
+              ul
+                - current_user.followings.each do |follower|
+                  li class="follower"
+                    / = link_to user_path(follower.id), id: "user-talk-show", data: { id: "#{follower.id}"}, remote: true do
+                    = link_to talk_rooms_path(follower: follower.id), class: "user-talk-show", remote: true do
+                      = render partial: 'users/attachment', locals: { user: follower}
+                      p = follower.name
+
       .talk.tab-content
+
       .add-friends.tab-content
         .add-friends__content
           .add-friends__content--search
@@ -88,10 +93,8 @@
                       = link_to user_relationships_path(user.id), method: :post do
                         i.fas.fa-user-plus
                         span.fukidashi 友だち追加
+
     .talk-room-index__talk
       .user-talks
         #talks.user-talks__talk
           = render partial: "users/user-talk-index", locals: { user: @user, room: @room, talks: @talks}
-      .send-talk
-        .send-talk__form-field
-          = render partial: "talk_rooms/room-messages"

@@ -72,11 +72,22 @@ javascript:
     $(document).ready(function(){
       const inputForm = $('#searching-form');
       const url = location.href;
-      const searchResult = $('.resurt ul');
+      const searchResult = $('.result');
 
-      function builtHTML(dataFromSearchFunction){
-        let html = `<li>${dataFromSearchFunction.name}</li>`
-        searchResult.append(html);
+      function builtHTML(data){
+        if(data.profile_image === null){
+          let html = `<a class="user-talk-show" data-remote="true" href="/talk_rooms?follower=${data.id}">
+                      <img src="${data.profile_image}">
+                      <p>${data.name}</p>
+                      `
+          searchResult.append(html);
+        }else{
+          let html = `<a class="user-talk-show" data-remote="true" href="/talk_rooms?follower=${data.id}">
+                      <img src="/assets/usagi.jpg">
+                      <p>${data.name}</p>
+                      `
+          searchResult.append(html);
+        }
       }
       function NoResult(message){
         let html = `<li>${message}</li>`
@@ -86,8 +97,13 @@ javascript:
       inputForm.on('keyup', function(e){
         e.preventDefault();
         let target = $(this).val();
-        search(target);  // ajax通信はsearch()という関数に
-        console.log(target);
+        if(target !== ''){
+          search(target);  // ajax通信はsearch()という関数に
+          $('.talk-rooms-content').addClass("talk-rooms-content-close");
+        }else{
+          searchResult.empty();
+          $('.talk-rooms-content').removeClass("talk-rooms-content-close");
+        }
       });
       // ajax処理
       function search(target){
