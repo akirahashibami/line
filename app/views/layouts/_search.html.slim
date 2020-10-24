@@ -1,5 +1,4 @@
 i(name="search-icon" id="search-icon" class="fas fa-search")
 =form_tag('/talk_rooms/search', method: :get) do
   =text_field_tag :name, :'', id: 'searching-form', placeholder: "名前で検索", autocomplate: 'off'
-.result
-  ul
+br

@@ -6,6 +6,10 @@
   visibility: visible;
 }
 
+.talk-rooms-content-close{
+  display: none;
+}
+
 .contain{
   background-color: #313131;
   height: 100vh;
@@ -221,6 +225,7 @@
           }
           form{
             width: 100%;
+            display: block;
 
             input{
               width: 100%;
@@ -230,6 +235,31 @@
               outline: none;
               border-radius: 0 5px 5px 0;
               color: #ddd;
+            }
+          }
+        }
+
+        .result{
+          padding: 8px 0 16px 18px;
+
+          &:hover{
+            background: #383838;
+          }
+          a{
+            display: flex;
+            text-decoration: none;
+            img{
+              width: 42px;
+              height: 42px;
+              border-radius: 50%;
+            }
+            p{
+              color: #ccc;
+              margin-left: 12px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              font-size: .85rem;
             }
           }
         }
@@ -531,22 +561,48 @@
       height: 100vh;
       border-left: 1px solid #444;
 
-      .user-talks{}
-      .send-talk{
-        &__form-field{
-          input{
-            outline: inherit;
-            background: #fff;
+      .user-talks{
+
+        &__talk{
+
+          // トーク表示部分の記述
+          .user-talk-index{
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 110px;
+            box-sizing: border-box;
+
+            &__name{
+              height: 70px;
+              border-bottom: 1px solid #404040;
+              p{
+                padding-top: 26px;
+                padding-left: 10px;
+                color: #ddd;
+                font-size: 1.2rem;
+              }
+            }
+
+            &__form{
+              width: 100%;
+              height: 110px;
+              border-top: 1px solid #404040;
+              position: absolute;
+              bottom: 0;
+
+              input{
+                min-width: 100%;
+                padding: 10px 0 50px 10px;
+                outline: none;
+                color: #ccc;
+                // text-shadow: 0 0 0 #000;
+                // -webkit-text-fill-color: transparent;
+              }
+            }
           }
         }
       }
     }
-  }
-}
-
-.talk-room-show{
-  input{
-    border: 1px solid #333;
-    outline: none;
   }
 }

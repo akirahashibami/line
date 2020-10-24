@@ -57,7 +57,7 @@ class TalkRoomsController < ApplicationController
   end
 
   def search
-    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%")
+    @users = current_user.followers.where('name LIKE(?)', "%#{params[:keyword]}%")
     respond_to do |format|
       format.html #htmlがないとエラーが出る
       format.json
