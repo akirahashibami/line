@@ -12,7 +12,18 @@ $ ->
     # 値を受け取った時
     received: (data) ->
       # サーバーサイドから値を受け取りviewに追加する
-      $('#talk').append("<p>"+data["talk"]+"</p>");
+      if data['user_id'] == $('#talk').data('user_id')
+        $('#talk').append('<div class="user-talk-index__talks--right">'+
+                            '<div class="time">'+'<span>'+data["created_at"]+'</span>'+'</div>'+
+                            '<div class="talk">'+  data["talk"]+'</div>'+
+                          '</div>')
+      else
+        $('#talk').append('<div class="user-talk-index__talks--left">'+
+                            '<div class="talk">'+  data["talk"]+'</div>'+
+                            '<div class="time">'+'<span>'+data["created_at"]+'</span>'+'</div>'+
+                          '</div>')
+      scroll = $('.user-talk-index__talks');
+      scroll.scrollTop(10000);
 
     speak: (talk) ->
       # サーバーサイド(channel)のspeakアクションにtalkパラメータを渡す

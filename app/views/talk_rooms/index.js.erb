@@ -1,1 +1,18 @@
 $('#talks').html("<%= j(render partial: 'users/user-talk-index', locals: { user: @user, room: @room, talks: @talks}) %>");
+
+// 逆無限スクロール
+$(document).ready(function(){
+  const $talk = $('.user-talk-index__talks');
+
+  // トーク内容の表示を一番下からに
+  // $talk.scrollTop(10000);
+
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.jscroll', //追加するタグ
+      nextSelector: 'span.next a', //読み込み先リンク
+      loadingHtml: '' //読み込み中の表示文字 
+    });
+  });
+
+});

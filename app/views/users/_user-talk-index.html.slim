@@ -2,17 +2,30 @@
   - unless user.blank?
     .user-talk-index__name
       p = "#{user.name}"
-    .user-talk-index__talks
-      #talk
+    .user-talk-index__talks.jscroll
+      #talk data-user_id="#{current_user.id}"
         - talks.each do |talk|
-          p = talk.talk
+          - if talk.user_id == current_user.id
+            .user-talk-index__talks--right
+              .time
+                span = talk.created_at.strftime('%H:%M')
+              .talk = talk.talk
+          - else
+            .user-talk-index__talks--left
+              = render partial: 'users/attachment', locals: { user: talk.user}
+              .talk = talk.talk
+              .time
+                span = talk.created_at.strftime('%H:%M')
     .user-talk-index__form
-      input[type="text"
-            id="talk-form"
-            data-behavior="room_speaker"
-            data-user="#{current_user.id}"
-            data-room="#{room.id}"
-            placeholder="メッセージを入力"]
+      textarea[type="text"
+                id="talk-form"
+                data-behavior="room_speaker"
+                data-user="#{current_user.id}"
+                data-room="#{room.id}"
+                placeholder="メッセージを入力"]
   - else
     .non-talk-case
-      p トークをはじめよう！
+      .non-talk-case__contents
+        img src="https://img.icons8.com/fluent-systems-filled/96/000000/line-me.png"
+        span トークを始めよう！
+        a href="https://icons8.com/icon/i7393ie24LoV/line" Line icon by Icons8

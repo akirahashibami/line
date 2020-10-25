@@ -30,7 +30,7 @@ class TalkRoomsController < ApplicationController
             if cr.talk_room_id == ar.talk_room_id
               @is_room = true
               @room = TalkRoom.find_by(id: cr.talk_room_id)
-              @talks = @room.talk
+              @talks = @room.talk.page(params[:page]).per(20)
             end
           end
         end

@@ -568,14 +568,12 @@
           // トーク表示部分の記述
           .user-talk-index{
             width: 100%;
-            min-height: 100vh;
-            position: relative;
-            padding-bottom: 110px;
-            box-sizing: border-box;
+            max-height: 100vh;
 
             &__name{
               height: 70px;
               border-bottom: 1px solid #404040;
+
               p{
                 padding-top: 26px;
                 padding-left: 10px;
@@ -584,20 +582,97 @@
               }
             }
 
+            &__talks{
+              overflow-y: scroll;
+              font-size: .75rem;
+              height: calc(100vh - 180px);
+
+              &--right{
+                margin: 10px;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 20px;
+
+                .time{
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-end;
+                  width: max-content;
+                  color: #888;
+                  margin: 0 7px;
+                  font-size: 0.5rem;
+                }
+                .talk{
+                  padding: 7px 12px;
+                  color: #333;
+                  background-color: #28D654;
+                  border-radius: 18.5px;
+                }
+              }
+
+              &--left{
+                margin: 10px;
+                display: flex;
+                padding-left: 10px;
+
+                img{
+                  width: 35px;
+                  height: 35px;
+                  border-radius: 50%;
+                  margin-right: 12px;
+                }
+                .time{
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-end;
+                  width: max-content;
+                  color: #888;
+                  margin: 0 7px;
+                  font-size: 0.5rem;
+                }
+                .talk{
+                  padding: 7px 12px;
+                  color: #ccc;
+                  background-color: #555;
+                  border-radius: 18.5px;
+                }
+              }
+            }
+
             &__form{
               width: 100%;
               height: 110px;
               border-top: 1px solid #404040;
-              position: absolute;
-              bottom: 0;
+              background-color: #313131;
 
-              input{
+              textarea{
                 min-width: 100%;
                 padding: 10px 0 50px 10px;
                 outline: none;
                 color: #ccc;
                 // text-shadow: 0 0 0 #000;
                 // -webkit-text-fill-color: transparent;
+              }
+            }
+
+            .non-talk-case{
+
+              &__contents{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                img{
+                  width: 110px;
+                  height: 110px;
+                }
+                span{
+                  color: #888;
+                }
+                a{
+                  padding-top: 18px;
+                }
               }
             }
           }

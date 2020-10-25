@@ -43,11 +43,12 @@
           = render partial: "layouts/search"
         .result
         .talk-rooms-content
-          .talk-rooms__my-information
-            .talk-rooms__my-information--image
-              = render partial: "users/attachment", locals: { user: current_user}
-            .talk-rooms__my-information--name
-              p = current_user.name
+          = link_to talk_rooms_path, class: "user-talk-show", remote: true do
+            .talk-rooms__my-information
+              .talk-rooms__my-information--image
+                = render partial: "users/attachment", locals: { user: current_user}
+              .talk-rooms__my-information--name
+                p = current_user.name
           .talk-rooms__list
             .talk-rooms__list--groups
               span.select-group-list グループ
