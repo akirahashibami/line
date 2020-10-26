@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_075731) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "talk_rooms", force: :cascade do |t|Talk
+  create_table "talk_rooms", force: :cascade do |t|
     t.integer "room_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

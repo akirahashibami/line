@@ -109,7 +109,7 @@ javascript:
       function search(target){
         $.ajax({
           type: 'GET',
-          url: 'talkrooms/search',
+          url: '/talkrooms/search',
           data: {keyword: target},
           dataType: 'json'
         })

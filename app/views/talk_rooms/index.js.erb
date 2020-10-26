@@ -2,17 +2,40 @@ $('#talks').html("<%= j(render partial: 'users/user-talk-index', locals: { user:
 
 // 逆無限スクロール
 $(document).ready(function(){
-  const $talk = $('.user-talk-index__talks');
+  let $talk = $('.user-talk-index__talks')
 
   // トーク内容の表示を一番下からに
-  // $talk.scrollTop(10000);
+  $talk.scrollTop(10000);
 
-  $(function() {
-    $('.jscroll').jscroll({
-      contentSelector: '.jscroll', //追加するタグ
-      nextSelector: 'span.next a', //読み込み先リンク
-      loadingHtml: '' //読み込み中の表示文字 
-    });
-  });
+  // $(function() {
+  //   if ($("nav.pagination a[rel=next]").length) {
+  //     $('.user-talk-index__talks').infiniteScroll({
+  //       path: 'nav.pagination a[rel=next]',
+  //       append: '#talk',
+  //       elementScroll: true,
+  //       history: false,
+  //       prefill: false,
+  //       status: '#talk'
+  //     });
+  //   }
+  // });
+
+  // $(function(){
+  //   let i = 2;
+  //   let $talk = $('.user-talk-index__talks')
+  //   let userId = <%= @user.id %>
+  //   $talk.scrollTop(100000);
+  //   $talk.scroll(function(){
+  //     if (($talk.scrollTop() === 0) && (i <= parseInt($(`.talk-${userId}`).find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
+  //       $.ajax({
+  //         url: $(`.talk-${userId}`).find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i)
+  //       }).done(function(data){
+  //         $('#talk').prepend($(data).find("#talk").html());
+  //         $talk.scrollTop($talk.first().height());
+  //         i++;
+  //       });
+  //     }
+  //   });
+  // });
 
 });

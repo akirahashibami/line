@@ -2,20 +2,22 @@
   - unless user.blank?
     .user-talk-index__name
       p = "#{user.name}"
-    .user-talk-index__talks.jscroll
-      #talk data-user_id="#{current_user.id}"
-        - talks.each do |talk|
-          - if talk.user_id == current_user.id
-            .user-talk-index__talks--right
-              .time
-                span = talk.created_at.strftime('%H:%M')
-              .talk = talk.talk
-          - else
-            .user-talk-index__talks--left
-              = render partial: 'users/attachment', locals: { user: talk.user}
-              .talk = talk.talk
-              .time
-                span = talk.created_at.strftime('%H:%M')
+    .user-talk-index__talks
+      div id="talk" class="talk-#{@user.id}" data-user_id="#{current_user.id}"
+        - unless talks.blank?
+          - talks.each do |talk|
+            - if talk.user_id == current_user.id
+              .user-talk-index__talks--right
+                .time
+                  span = talk.created_at.strftime('%H:%M')
+                .talk = talk.talk
+            - else
+              .user-talk-index__talks--left
+                = render partial: 'users/attachment', locals: { user: talk.user}
+                .talk = talk.talk
+                .time
+                  span = talk.created_at.strftime('%H:%M')
+          / = paginate talks
     .user-talk-index__form
       textarea[type="text"
                 id="talk-form"

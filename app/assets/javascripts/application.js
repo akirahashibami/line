@@ -15,4 +15,4 @@
 //= require jquery
 //= require_tree .
 //= require_self
-//= require jquery.jscroll.min.js
+//= require infinite-scroll.pkgd.min.js

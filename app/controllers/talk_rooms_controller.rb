@@ -5,12 +5,7 @@ class TalkRoomsController < ApplicationController
   end
 
   def create
-    room = TalkRoom.create
-    RoomUser.create(user_id: current_user.id, talk_room_id: room.id)
-    RoomUser.create(user_id: params[:room_user][:user_id], talk_room_id: room.id)
-    # 新規ルーム作成時に、showでparams[:user_id]を使えるようにする
-    user = User.find(params[:room_user][:user_id])
-    redirect_to talk_room_path(room, user_id: user)
+    # code
   end
 
   def show
@@ -30,14 +25,16 @@ class TalkRoomsController < ApplicationController
             if cr.talk_room_id == ar.talk_room_id
               @is_room = true
               @room = TalkRoom.find_by(id: cr.talk_room_id)
-              @talks = @room.talk.page(params[:page]).per(20)
+              @talks = @room.talk
+              # @talks = TalkRoom.preload(:talk)
             end
           end
         end
         # なければ新規作成
         unless @is_room
-          @room = TalkRoom.new
-          @room_user = RoomUser.new
+          @room = TalkRoom.create
+          RoomUser.create(user_id: current_user.id, talk_room_id: @room.id)
+          RoomUser.create(user_id: params[:follower].to_i, talk_room_id: @room.id)
         end
       end
     end
@@ -57,7 +54,7 @@ class TalkRoomsController < ApplicationController
   end
 
   def search
-    @users = current_user.followers.where('name LIKE(?)', "%#{params[:keyword]}%")
+    @users = current_user.followings.where('name LIKE(?)', "%#{params[:keyword]}%")
     respond_to do |format|
       format.html #htmlがないとエラーが出る
       format.json
