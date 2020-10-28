@@ -56,9 +56,8 @@
             .talk-rooms__list--friends
               span.select-friends-list 友だち
               ul
-                - current_user.followings.each do |follower|
+                - current_user.followings.includes(:followings).each do |follower|
                   li class="follower"
-                    / = link_to user_path(follower.id), id: "user-talk-show", data: { id: "#{follower.id}"}, remote: true do
                     = link_to talk_rooms_path(follower: follower.id), class: "user-talk-show", remote: true do
                       = render partial: 'users/attachment', locals: { user: follower}
                       p = follower.name
@@ -98,4 +97,4 @@
     .talk-room-index__talk
       .user-talks
         #talks.user-talks__talk
-          = render partial: "users/user-talk-index", locals: { user: @user, room: @room, talks: @talks}
+            = render partial: "users/user-talk-index", locals: { user: @user, room: @room, talks: @talks}

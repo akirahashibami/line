@@ -1,33 +1,36 @@
-.user-talk-index
-  - unless user.blank?
-    .user-talk-index__name
-      p = "#{user.name}"
-    .user-talk-index__talks
-      div id="talk" class="talk-#{@user.id}" data-user_id="#{current_user.id}"
-        - unless talks.blank?
-          - talks.each do |talk|
-            - if talk.user_id == current_user.id
-              .user-talk-index__talks--right
-                .time
-                  span = talk.created_at.strftime('%H:%M')
-                .talk = talk.talk
-            - else
-              .user-talk-index__talks--left
-                = render partial: 'users/attachment', locals: { user: talk.user}
-                .talk = talk.talk
-                .time
-                  span = talk.created_at.strftime('%H:%M')
-          / = paginate talks
-    .user-talk-index__form
-      textarea[type="text"
-                id="talk-form"
-                data-behavior="room_speaker"
-                data-user="#{current_user.id}"
-                data-room="#{room.id}"
-                placeholder="メッセージを入力"]
-  - else
-    .non-talk-case
-      .non-talk-case__contents
-        img src="https://img.icons8.com/fluent-systems-filled/96/000000/line-me.png"
-        span トークを始めよう！
-        a href="https://icons8.com/icon/i7393ie24LoV/line" Line icon by Icons8
+- cache talks do
+  .user-talk-index
+      - unless user.blank?
+        .user-talk-index__name
+          p = "#{user.name}"
+        .user-talk-index__talks
+          div id="talk" class="talk-#{@user.id}" data-user_id="#{current_user.id}"
+            - unless talks.blank?
+              - talks.includes(:user).each do |talk|
+                - if talk.user_id == current_user.id
+                  .user-talk-index__talks--right
+                    .time
+                      span = talk.created_at.strftime('%H:%M')
+                    .talk = talk.talk
+                - else
+                  .user-talk-index__talks--left
+                    - if user.profile_image.attached?
+                      = image_tag(user.profile_image)
+                    - else
+                      = image_tag('usagi.jpg')
+                    .talk = talk.talk
+                    .time
+                      span = talk.created_at.strftime('%H:%M')
+        .user-talk-index__form
+          textarea[type="text"
+                    id="talk-form"
+                    data-behavior="room_speaker"
+                    data-user="#{current_user.id}"
+                    data-room="#{room.id}"
+                    placeholder="メッセージを入力"]
+      - else
+        .non-talk-case
+          .non-talk-case__contents
+            img src="https://img.icons8.com/fluent-systems-filled/96/000000/line-me.png"
+            span トークを始めよう！
+            a href="https://icons8.com/icon/i7393ie24LoV/line" Line icon by Icons8

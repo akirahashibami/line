@@ -74,3 +74,9 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'kaminari'
 gem 'pry-rails'
+
+# フラグメントキャッシュ
+gem 'dalli'
+
+# n+1発見
+gem 'bullet'

@@ -1,5 +1,13 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  config.after_initialize do
+      Bullet.enable        = false
+      Bullet.alert         = false
+      Bullet.bullet_logger = true
+      Bullet.console       = true
+    # Bullet.growl         = true
+      Bullet.rails_logger  = true
+      Bullet.add_footer    = true
+    end  # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -23,8 +31,9 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
+    config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :null_store
+    config.cache_store = :mem_cache_store
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options)

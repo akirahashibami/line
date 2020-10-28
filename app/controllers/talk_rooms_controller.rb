@@ -26,7 +26,6 @@ class TalkRoomsController < ApplicationController
               @is_room = true
               @room = TalkRoom.find_by(id: cr.talk_room_id)
               @talks = @room.talk
-              # @talks = TalkRoom.preload(:talk)
             end
           end
         end

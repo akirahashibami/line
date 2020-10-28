@@ -8,4 +8,6 @@ class TalkRoom < ApplicationRecord
   has_many :room_favorites,   dependent: :destroy
   has_many :room_events,      dependent: :destroy
   has_many :users,            through: :room_users
+
+  scope :recently, -> { order(updated_at: :desc) }
 end
