@@ -63,6 +63,15 @@
                       p = follower.name
 
       .talk.tab-content
+        .talk__search
+        .talk__friends
+          ul
+            - @latest_talks.each do |talk|
+              - talk_user = talk.users.where.not(id: current_user.id)
+              li class="latest_talk"
+                = link_to talk_rooms_path(follower: talk_user), class: "latest-talk-show", remote: true do
+                  p = talk_user.name
+                  - binding.pry
 
       .add-friends.tab-content
         .add-friends__content

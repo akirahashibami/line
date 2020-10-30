@@ -14,13 +14,14 @@ class TalkRoomsController < ApplicationController
   end
 
   def index
+    # 友だちがクリックされた時
     unless params[:follower].blank?
       @user = User.find_by(id: params[:follower])
-      @current_room = RoomUser.where(user_id: current_user.id)
-      @another_room = RoomUser.where(user_id: @user.id)
+      current_room = RoomUser.where(user_id: current_user.id)
+      another_room = RoomUser.where(user_id: @user.id)
       unless @user.id == current_user.id
-        @current_room.each do |cr|
-          @another_room.each do |ar|
+        current_room.each do |cr|
+          another_room.each do |ar|
             # ルームが存在する時
             if cr.talk_room_id == ar.talk_room_id
               @is_room = true
@@ -38,6 +39,17 @@ class TalkRoomsController < ApplicationController
       end
     end
     @users = User.where.not(id: current_user.id)
+
+    # トークが新しい順にトークルームを並べる
+    latest_talk = Talk.from(Talk.order(created_at: :asc))
+                      .group(:talk_room_id)
+                      .select(:talk_room_id)
+                      .order(created_at: :desc)
+    @latest_talks = Array.new
+    latest_talk.each do |talk|
+      room = TalkRoom.find_by(id: talk.talk_room_id)
+      @latest_talks.push(room)
+    end
   end
 
   def edit
