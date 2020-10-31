@@ -25,6 +25,9 @@ $ ->
       scroll = $('.user-talk-index__talks');
       scroll.scrollTop(10000);
 
+      # トークの追加があったトークルームを最上段に表示させる
+      $('.talk-room-' + data["talk_room_id"])
+
     speak: (talk) ->
       # サーバーサイド(channel)のspeakアクションにtalkパラメータを渡す
       @perform 'speak', talk: talk

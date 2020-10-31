@@ -68,7 +68,7 @@
           ul
             - @latest_talks.each do |talk|
               - talk_user = talk.users.where.not(id: current_user.id)
-              li class="latest_talk"
+              li class="latest_talk talk-room-#{talk.id}"
                 = link_to talk_rooms_path(follower: talk_user[0].id), class: "latest-talk-show", remote: true do
                   = render partial: 'users/attachment', locals: { user: talk_user[0]}
                   p.name-talk

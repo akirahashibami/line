@@ -1,3 +1,22 @@
+## チャット機能
+- ActionCable使用
+
+## gem
+- gem 'devise'
+- gem 'devise_token_auth'
+- gem 'bootstrap', '~> 4.1.1'
+- gem 'jquery-rails'
+- gem 'pry-byebug', group: :development
+- gem 'font-awesome-sass', '~> 5.4.1'
+- gem 'rails-i18n'
+- gem 'dotenv-rails'
+- gem 'slim-rails'
+- gem 'html2slim'
+- gem 'kaminari'
+- gem 'pry-rails'
+- gem 'dalli'
+- gem 'bullet'
+
 一旦メモ書きに使います・・・
 
 ### トークルーム
@@ -13,7 +32,7 @@
 - 友だち追加した友だちを押すと右側にトークルームを表示トークを送ると同時にルームが作成される
 
 ### ユーザーエディット
-- 名前とメッセージの部分はdivか何かで自分のステータスを表示、クリックされたらエディット部分に切り替え表示させる説が有力（コストが半端ないですわ）
+- 名前とメッセージの部分はdivか何かで自分のステータスを表示、クリックされたらエディット部分に切り替え表示させる
 
 ### css
 width: max-content;　要素の幅で合わせる　かなり沼
