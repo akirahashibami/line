@@ -193,6 +193,44 @@
         }
       }
 
+      %__rooms-list{
+        ul{
+          display: none;
+
+          li{
+            list-style: none;
+            display: flex;
+            padding: 7px 14px;
+            position: relative;
+
+            &:hover{
+              background: #383838;
+            }
+
+            a{
+              display: flex;
+              text-decoration: none;
+
+              img{
+                display: inline-block;
+                width: 42px;
+                height: 42px;
+                border-radius: 50%;
+              }
+
+              p{
+                width: 200px;
+                margin-left: 10px;
+                font-size: .7rem;
+                height: 42px;
+                line-height: 42px;
+                color: #ddd;
+              }
+            }
+          }
+        }
+      }
+
       %__open{
         &.is-open{
           span:after{
@@ -294,43 +332,6 @@
         &__list{
           box-sizing: border-box;
 
-          %__rooms-list{
-            ul{
-              display: none;
-
-              li{
-                list-style: none;
-                display: flex;
-                padding: 7px 14px;
-                position: relative;
-
-                &:hover{
-                  background: #383838;
-                }
-
-                a{
-                  display: flex;
-
-                  img{
-                    display: inline-block;
-                    width: 42px;
-                    height: 42px;
-                    border-radius: 50%;
-                  }
-
-                  p{
-                    width: 200px;
-                    margin-left: 10px;
-                    font-size: .7rem;
-                    height: 42px;
-                    line-height: 42px;
-                    color: #ddd;
-                  }
-                }
-              }
-            }
-          }
-
           &--groups{
             @extend %__select;
             @extend %__rooms-list;
@@ -363,6 +364,60 @@
         min-width: 300px;
         padding-top: 30px;
         display: none;
+
+        &__search{
+
+        }
+        &__friends{
+          @extend %__select;
+          ul{
+            li{
+              list-style: none;
+              display: flex;
+              padding: 7px 14px;
+              position: relative;
+
+              &:hover{
+                background: #383838;
+              }
+
+              a{
+                display: flex;
+                text-decoration: none;
+                width: 100%;
+
+                img{
+                  display: inline-block;
+                  width: 42px;
+                  height: 42px;
+                  border-radius: 50%;
+                }
+
+                .name-talk{
+                  width: 50%;
+                  display: flex;
+                  flex-direction: column;
+                  color: #ddd;
+                  padding-left: 10px;
+                  .name{
+                    font-size: .85rem;
+                  }
+                  .display{
+                    font-size: .7rem;
+                    color: #888;
+                  }
+                }
+
+                .data-time-notifiction{
+                  .data-time{
+                    font-size: .85rem;
+                    color: #aaa
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
       .add-friends{

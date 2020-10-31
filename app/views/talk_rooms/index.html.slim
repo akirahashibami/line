@@ -11,7 +11,7 @@
         span.tab-btn
           i(name="user-plus" id="talk-room-user-plus" class="fas fa-user-plus")
           p.fukidashi 友達追加
-        span.tab-btn
+        span
           i(name="clock" id="talk-room-clock" class="fas fa-clock")
           p.fukidashi タイムライン
       .talk-room-index__sidebar--other
@@ -69,9 +69,25 @@
             - @latest_talks.each do |talk|
               - talk_user = talk.users.where.not(id: current_user.id)
               li class="latest_talk"
-                = link_to talk_rooms_path(follower: talk_user), class: "latest-talk-show", remote: true do
-                  p = talk_user.name
-                  - binding.pry
+                = link_to talk_rooms_path(follower: talk_user[0].id), class: "latest-talk-show", remote: true do
+                  = render partial: 'users/attachment', locals: { user: talk_user[0]}
+                  p.name-talk
+                    span.name = talk_user.last.name
+                    span.display = talk.talk.last.talk
+                  p.data-time-notifiction
+                    span.data-time
+                      / もしトークが今日の物ならば
+                      - if Date.today == talk.talk.last.created_at.to_date
+                        = talk.talk.last.created_at.strftime('%H:%M')
+                      / もしトークが過去１週間ならば
+                      - elsif 1.week.ago.beginning_of_day.to_date..Time.zone.now.end_of_day.to_date == talk.talk.last.created_at.to_date
+                        - weeks = ["日","月","火","水","木","金","土"]
+                        - num = talk.talk.last.created_at.strftime("%w").to_i
+                        - week = weeks[num]
+                        = week + "曜日"
+                      / それ以降であれば
+                      - else
+                        = talk.talk.last.created_at.strftime("%Y.%M.%D")
 
       .add-friends.tab-content
         .add-friends__content

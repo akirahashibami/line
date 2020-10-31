@@ -39,7 +39,6 @@ class TalkRoomsController < ApplicationController
       end
     end
     @users = User.where.not(id: current_user.id)
-
     # トークが新しい順にトークルームを並べる
     latest_talk = Talk.from(Talk.order(created_at: :asc))
                       .group(:talk_room_id)
@@ -48,7 +47,9 @@ class TalkRoomsController < ApplicationController
     @latest_talks = Array.new
     latest_talk.each do |talk|
       room = TalkRoom.find_by(id: talk.talk_room_id)
-      @latest_talks.push(room)
+      unless room.users.where(id: current_user.id).blank?
+        @latest_talks.push(room)
+      end
     end
   end
 
