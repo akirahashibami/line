@@ -65,4 +65,11 @@ $(document).ready(function(){
     parent.find('input[type=hidden]').attr('value',$(this).attr('data-value'));
   });
 
+  // ユーザー画像フォームで選択と同時に保存する
+  $('#image-edit').find($('input[type=file]')).on('change', function(e){
+    if (e.target.files[0].size > 0) {
+      $(this).parents('form').submit();
+    }
+  });
+
 });

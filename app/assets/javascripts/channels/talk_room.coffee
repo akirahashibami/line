@@ -26,7 +26,17 @@ $ ->
       scroll.scrollTop(10000);
 
       # トークの追加があったトークルームを最上段に表示させる
-      $('.talk-room-' + data["talk_room_id"])
+      $('.talk__friends--list').prepend($('.talk-room-' + data["talk_room_id"]));
+      # 内容を書き換える
+      $('.talk-room-' + data["talk_room_id"]).find(
+        $('#latest-talk').html('<span class="latest-talk-show__name-display--display">'+
+                                  data["talk"]+
+                                '</span>')
+      )
+      # 時間も書き換える
+      $('#data-time').html('<span id="data-time">'+
+                              data["created_at"]+
+                            '</span>')
 
     speak: (talk) ->
       # サーバーサイド(channel)のspeakアクションにtalkパラメータを渡す

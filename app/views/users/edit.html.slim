@@ -16,7 +16,9 @@
           .image
             = render partial: "users/attachment", locals: { user: @user}
             #image-edit
-              i(name="image" id="user-edit-image" class="fas fa-camera")
+              label.label
+                i(name="image" id="user-edit-image-icon" class="fas fa-camera")
+                = f.file_field :profile_image, id: "user-edit-image"
           .base
             .name
               p.left 名前

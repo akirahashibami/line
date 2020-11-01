@@ -294,16 +294,24 @@
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 25px;
             height: 25px;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            i{
-              font-size: .8rem;
-              color: #888;
+            label{
+              cursor: pointer;
+
+              #user-edit-image{
+                display: none;
+              }
+
+              i{
+                font-size: .8rem;
+                color: #888;
+              }
             }
           }
         }

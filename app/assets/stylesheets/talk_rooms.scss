@@ -371,7 +371,7 @@
         &__friends{
           @extend %__select;
           ul{
-            li{
+            .latest_talk{
               list-style: none;
               display: flex;
               padding: 7px 14px;
@@ -381,7 +381,7 @@
                 background: #383838;
               }
 
-              a{
+              .latest-talk-show{
                 display: flex;
                 text-decoration: none;
                 width: 100%;
@@ -393,23 +393,23 @@
                   border-radius: 50%;
                 }
 
-                .name-talk{
+                &__name-display{
                   width: 50%;
                   display: flex;
                   flex-direction: column;
                   color: #ddd;
                   padding-left: 10px;
-                  .name{
+                  &--name{
                     font-size: .85rem;
                   }
-                  .display{
+                  &--display{
                     font-size: .7rem;
                     color: #888;
                   }
                 }
 
-                .data-time-notifiction{
-                  .data-time{
+                &__data-time-notifiction{
+                  #data-time{
                     font-size: .85rem;
                     color: #aaa
                   }
@@ -701,17 +701,32 @@
 
             &__form{
               width: 100%;
-              height: 110px;
+              height: 80px;
               border-top: 1px solid #404040;
               background-color: #313131;
 
               textarea{
                 min-width: 100%;
-                padding: 10px 0 50px 10px;
+                padding: 10px 0 30px 10px;
                 outline: none;
                 color: #ccc;
+                font-size: .8rem;
                 // text-shadow: 0 0 0 #000;
                 // -webkit-text-fill-color: transparent;
+              }
+              ::placeholder{
+                color: #555;
+              }
+            }
+
+            &__file{
+              padding-left: 10px;
+              display: flex;
+              justify-content: space-between;
+              i{
+                color: #999;
+                padding: 0 8px;
+                cursor: pointer;
               }
             }
 

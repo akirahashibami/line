@@ -14,8 +14,8 @@
                     .talk = talk.talk
                 - else
                   .user-talk-index__talks--left
-                    - if user.profile_image.attached?
-                      = image_tag(user.profile_image)
+                    - if talk.user.profile_image.attached?
+                      = image_tag(talk.user.profile_image)
                     - else
                       = image_tag('usagi.jpg')
                     .talk = talk.talk
@@ -28,6 +28,13 @@
                     data-user="#{current_user.id}"
                     data-room="#{room.id}"
                     placeholder="メッセージを入力"]
+        .user-talk-index__file
+          .user-talk-index__file--left
+            i(name="send-file" id="user-talk-index-file" class="fas fa-paperclip")
+            i(name="keep" id="user-talk-index-keep" class="far fa-bookmark")
+            i(name="capture" id="user-talk-index-capture" class="far fa-square")
+          .user-talk-index__file--right
+            i(name="stamp" id="user-talk-index-stamp" class="far fa-smile")
       - else
         .non-talk-case
           .non-talk-case__contents
