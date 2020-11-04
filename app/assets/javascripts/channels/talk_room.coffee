@@ -1,5 +1,5 @@
 $ ->
-  talkForm = $('#talk-form')
+  talkForm = $('#talk_form')
 
   App.talk_room = App.cable.subscriptions.create { channel: "TalkRoomChannel", room_id: talkForm.data('room')},
 
@@ -42,6 +42,15 @@ $ ->
       # サーバーサイド(channel)のspeakアクションにtalkパラメータを渡す
       @perform 'speak', talk: talk
 
+    sendImage: (data_uri, file_name, user, room) ->
+      @perform 'send_image', {data_uri: data_uri, user: user, room: room}
+      clear_form '.user-talk-index__file--left'
+
+  # フォームリセット
+  clear_form = (selector) ->
+    $(selector).find(":text, :file").val("")
+
+  # チャットを送る
   $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
     # return(Enter)が押された時
     if event.keyCode is 13
@@ -49,3 +58,20 @@ $ ->
       App.talk_room.speak [event.target.value, $('[data-user]').attr('data-user'), $('[data-room]').attr('data-room')]
       event.target.value = ''
       event.preventDefault()
+
+  # 画像を送る
+  $(document).on 'change', '[data-behavior~=room_image]', (event) ->
+    image = $('#send-file-form')
+    has_image = if image.get(0).files.length > 0 then true else false
+
+    if has_image
+      file_name = image.get(0).files[0].name
+      # ファイル読み込み用のreader生成
+      reader = new FileReader()
+      # Data URI Scheme文字列を取得するためのファイル読み込み
+      reader.readAsDataURL image.get(0).files[0]
+      # readerが画像を読み込んだ後の処理
+      reader.addEventListener "loadend", ->
+        # reader.result部分が読み込んだ画像のData URI Scheme文字列
+        App.talk_room.sendImage reader.result, file_name, $('[data-user]').attr('data-user'), $('[data-room]').attr('data-room')
+    event.preventDefault()

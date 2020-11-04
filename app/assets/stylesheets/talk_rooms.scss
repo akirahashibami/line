@@ -723,10 +723,19 @@
               padding-left: 10px;
               display: flex;
               justify-content: space-between;
+
               i{
                 color: #999;
                 padding: 0 8px;
                 cursor: pointer;
+              }
+
+              &--left{
+                label{
+                  input{
+                    display: none;
+                  }
+                }
               }
             }
 

@@ -30,7 +30,13 @@
                     placeholder="メッセージを入力"]
         .user-talk-index__file
           .user-talk-index__file--left
-            i(name="send-file" id="user-talk-index-file" class="fas fa-paperclip")
+            label.label
+              input[type="file"
+                    id="send-file-form"
+                    data-behavior="room_image"
+                    data-user="#{current_user.id}"
+                    data-room="#{room.id}"]
+              i(name="send-file" id="user-talk-index-file" class="fas fa-paperclip")
             i(name="keep" id="user-talk-index-keep" class="far fa-bookmark")
             i(name="capture" id="user-talk-index-capture" class="far fa-square")
           .user-talk-index__file--right

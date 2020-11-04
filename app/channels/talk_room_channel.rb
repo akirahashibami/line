@@ -24,4 +24,13 @@ class TalkRoomChannel < ApplicationCable::Channel
                                   created_at: talk[:created_at].strftime("%H:%M")
   end
 
+  def send_image(image)
+    talk = Talk.new(user_id: image['user'].to_i,
+                    talk_room_id: image['room'].to_i)
+    if talk.save
+      talk.parse_base64(image['data_uri'])
+    end
+    ActionCable.server.broadcast "talk_room_channel_#{image['room']}"
+  end
+
 end
