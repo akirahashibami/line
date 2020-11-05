@@ -96,7 +96,7 @@
             p 友だち検索
           .add-friends__content--create-group
             i.fas.fa-user-friends
-            p グループ作成
+            p = link_to 'グループ作成', new_talk_room_path, :onclick=>"window.open(this.href, 'グループ作成', 'height=500, width=450');return false;"
           .add-friends__content--create-open-chat
             i.far.fa-square
             p オープンチャット作成

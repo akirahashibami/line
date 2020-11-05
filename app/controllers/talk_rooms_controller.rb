@@ -1,11 +1,11 @@
 class TalkRoomsController < ApplicationController
 
   def new
-    # code
+    @talk_room = TalkRoom.new
   end
 
   def create
-    # code
+    @talk_room = TalkRoom.new(talk_room_params)
   end
 
   def show

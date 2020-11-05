@@ -1,0 +1,31 @@
+.create-new-talk-room
+  = form_with model: @talk_room, method: :post, local: true do |f|
+
+    .create-new-talk-room__top-wrapper
+      .create-new-talk-room__top-wrapper--image
+        = image_tag('room.png')
+        #room-image-edit
+          label.label
+            i(name='image' id="create-room-image-icon" class="fas fa-camera")
+            = f.file_field :talk_room_image, id: "create-room-image"
+      .create-new-talk-room__top-wrapper--room-name
+        = f.text_field :room_name, id: "create-room-name", :placeholder => "グループ名"
+
+    .create-new-talk-room__choice-menber
+      .create-new-talk-room__choice-menber--left
+        .search-content
+          .menber-search
+            = render partial: "layouts/search"
+        ul.menber-list
+          - current_user.followings.includes(:followings).each do |follower|
+            li class="follower"
+              = render partial: 'users/attachment', locals: { user: follower}
+              p = follower.name
+      .create-new-talk-room__choice-menber--right
+        #no-select-case 選択した友達はいません
+
+    .create-new-talk-room__create-room
+      .create-new-talk-room__create-room--btn
+        .create-cancel キャンセル
+        .create-success
+          = f.submit "追加", id: "submit", disabled: 'false'

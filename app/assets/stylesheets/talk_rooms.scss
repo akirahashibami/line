@@ -112,6 +112,7 @@
             flex-direction: column;
             border-radius: 4px;
             display: none;
+            z-index: 10;
             .LINE{
               border-bottom: 1px solid #555;
               margin-bottom: 3px;
@@ -764,4 +765,127 @@
       }
     }
   }
+}
+
+// ===============================グルプルーム作成=======================================
+// ===============================グルプルーム作成=======================================
+// ===============================グルプルーム作成=======================================
+.create-new-talk-room{
+
+  &__top-wrapper{
+    display: flex;
+    background-color: #E4EBF3;
+
+    &--image{
+      position: relative;
+      padding: 8px 8px 0 8px;
+      width: 80px;
+
+      img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      #room-image-edit{
+        position: absolute;
+        bottom: 6px;
+        right: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label{
+          cursor: pointer;
+
+          #create-room-image{
+            display: none;
+          }
+
+          i{
+            font-size: .8rem;
+            color: #888;
+          }
+        }
+      }
+    }
+
+    &--room-name{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      input{
+        height: 28px;
+        margin: 0 10px;
+        background-color: #fff;
+        padding: 5px 9px;
+        font-size: .85rem;
+        outline: none;
+        border: 1px solid #D1D9E3;
+      }
+    }
+  }
+
+  &__choice-menber{
+    display: flex;
+    border-top: 1px solid #D1D9E3;
+
+    &--left{
+      width: 50%;
+
+      .search-content{
+        border-bottom: 1px solid #D1D9E3;
+
+        .menber-search{
+          height: 30px;
+          margin: 5px 8px;
+          border: 1px solid #D1D9E3;
+          border-radius: 3px;
+          font-size: .8rem;
+          i{
+            width: 10%;
+            padding-left: 8px;
+          }
+          input{
+            width: 90%;
+            outline: none;
+            padding: 5px 5px;
+          }
+        }
+      }
+
+      .menber-list{
+        overflow-y: scroll;
+        .follower{
+          display: flex;
+          padding: 4px 10px;
+          border-bottom: 1px solid #EBF4FF;
+
+          img{
+            width: 43px;
+            height: 43px;
+            object-fit: cover;
+          }
+          p{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: .8rem;
+            padding-left: 5px;
+          }
+        }
+      }
+    }
+    &--right{}
+  }
+
+  &__create-room{}
 }
