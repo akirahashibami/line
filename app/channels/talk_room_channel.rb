@@ -30,7 +30,11 @@ class TalkRoomChannel < ApplicationCable::Channel
     if talk.save
       talk.parse_base64(image['data_uri'])
     end
-    ActionCable.server.broadcast "talk_room_channel_#{image['room']}"
+    # ActionCable.server.broadcast "talk_room_channel_#{image['room']}",
+    #                               talk_image: talk.talk_image,
+    #                               user_id: talk.user_id,
+    #                               talk_room_id: talk.talk_room_id,
+    #                               created_at: talk.created_at.strftime("%H:%M")
   end
 
 end
