@@ -881,11 +881,79 @@
             font-size: .8rem;
             padding-left: 5px;
           }
+          .follower-check{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: flex-end;
+
+            input{
+              border: #ddd;
+            }
+          }
         }
       }
     }
-    &--right{}
+    &--right{
+      width: 50%;
+      border-left: 1px solid #D1D9E3;
+
+      #no-select-case{
+        width: 100%;
+        height: 100%;
+        font-size: .75rem;
+        font-weight: bold;
+        color: #aaa;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   }
 
-  &__create-room{}
+  &__create-room{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #D1D9E3;
+
+    &--btn{
+      display: flex;
+      width: 40%;
+
+      %__create-btn{
+        width: 50%;
+        font-size: .75rem;
+        text-align: center;
+        border: 1px solid #D1D9E3;
+        border-radius: 4px;
+        margin: 0 2px;
+      }
+
+      .create-cancel{
+        @extend %__create-btn;
+        a{
+          width: 100%;
+          text-decoration: none;
+          color: #888;
+          padding: 5px 10px;
+          line-height: 30px;
+        }
+      }
+      .create-success{
+        @extend %__create-btn;
+        background-color: #00b900;
+        input{
+          width: 100%;
+          color: #fff;
+          padding: 5px 10px;
+        }
+      }
+    }
+  }
 }

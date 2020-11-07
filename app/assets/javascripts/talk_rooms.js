@@ -129,4 +129,22 @@ javascript:
       }
     });
 
+    // グループトーク作成時に、チェックボックスが空の時はボタンを押せなくする
+    // また、作成時orキャンセル時にウィンドウを閉じる
+    $(document).ready(function(){
+      let $cancel = $('#cancel');
+      let $submit = $('#submit-room');
+
+      // チェックボックスの判定
+
+
+      // ウィンドウを閉じる
+      $cancel.on('click', function(){
+        window.open('about:blank','_self').close();
+      });
+      // $submit.on('click', function(){
+      //   window.open('about:blank','_self').close();
+      // });
+    });
+
   });

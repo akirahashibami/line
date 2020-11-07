@@ -2,10 +2,12 @@ class TalkRoomsController < ApplicationController
 
   def new
     @talk_room = TalkRoom.new
+    @talk_room.room_users.new
   end
 
   def create
     @talk_room = TalkRoom.new(talk_room_params)
+    @talk_room.save
   end
 
   def show
@@ -14,7 +16,7 @@ class TalkRoomsController < ApplicationController
   end
 
   def index
-    # 友だちがクリックされた時
+    # 友だちがクリックされた時のルーム表示判定
     unless params[:follower].blank?
       @user = User.find_by(id: params[:follower])
       current_room = RoomUser.where(user_id: current_user.id)
@@ -38,7 +40,10 @@ class TalkRoomsController < ApplicationController
         end
       end
     end
+
+    # 知り合いかも？に自分以外のユーザーを表示
     @users = User.where.not(id: current_user.id)
+
     # トークが新しい順にトークルームを並べる
     latest_talk = Talk.from(Talk.order(created_at: :asc))
                       .group(:talk_room_id)
@@ -51,6 +56,12 @@ class TalkRoomsController < ApplicationController
         @latest_talks.push(room)
       end
     end
+
+    #　自分が参加しているグループトークの表示
+     # 自分が参加しているグループを探す
+    current_user_entry_group = current_user.talk_room.where.not(room_name: :nill).pluck(:talk_room_id)
+     # 名前順で並び替え
+    @entry_room = TalkRoom.where(id: current_user_entry_group).order(room_name: :asc)
   end
 
   def edit
@@ -76,6 +87,10 @@ class TalkRoomsController < ApplicationController
   private
 
   def talk_room_params
-    params.require(:talk_room)
+    # ルーム作成時に自分のidが入るようにしておく
+    params[:talk_room][:user_ids].push(current_user.id)
+    # 配列の中身を全てintegerに
+    params[:talk_room][:user_ids].map!(&:to_i)
+    params[:talk_room].permit(:room_name, { user_ids: []})
   end
 end

@@ -53,6 +53,11 @@
             .talk-rooms__list--groups
               span.select-group-list グループ
               ul
+                - @entry_room.each do |room|
+                  li class="group-room"
+                    / = link_to talk_rooms_path(follower: follower.id), class: "group-talk-show", remote: true do
+                    / = render partial: 'users/attachment', locals: { user: room}
+                    p = room.room_name
             .talk-rooms__list--friends
               span.select-friends-list 友だち
               ul

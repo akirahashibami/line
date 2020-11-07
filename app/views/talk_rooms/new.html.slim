@@ -1,6 +1,5 @@
-.create-new-talk-room
-  = form_with model: @talk_room, method: :post, local: true do |f|
-
+= form_with model: @talk_room, method: :post, local: true do |f|
+  .create-new-talk-room
     .create-new-talk-room__top-wrapper
       .create-new-talk-room__top-wrapper--image
         = image_tag('room.png')
@@ -21,11 +20,15 @@
             li class="follower"
               = render partial: 'users/attachment', locals: { user: follower}
               p = follower.name
+              .follower-check
+                = f.check_box :user_ids,{ multiple: true, checked: follower[:checked], disabled: follower[:disabled], include_hidden: false}, follower[:id]
       .create-new-talk-room__choice-menber--right
-        #no-select-case 選択した友達はいません
+        #no-select-case
+          p 選択した友達はいません。
 
     .create-new-talk-room__create-room
       .create-new-talk-room__create-room--btn
-        .create-cancel キャンセル
+        .create-cancel
+          = link_to "キャンセル", "#", id: "cancel"
         .create-success
-          = f.submit "追加", id: "submit", disabled: 'false'
+          = f.submit "追加", id: "submit-room"
