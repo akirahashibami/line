@@ -24,8 +24,8 @@ class TalkRoomsController < ApplicationController
       unless @user.id == current_user.id
         current_room.each do |cr|
           another_room.each do |ar|
-            # ルームが存在する時
-            if cr.talk_room_id == ar.talk_room_id
+            # ルームが存在する時 かつ ルームのユーザーIDが2人まで（グループとの差別化）
+            if cr.talk_room_id == ar.talk_room_id && TalkRoom.find_by(id: cr.talk_room_id).users.ids.size == 2
               @is_room = true
               @room = TalkRoom.find_by(id: cr.talk_room_id)
               @talks = @room.talk
@@ -39,6 +39,13 @@ class TalkRoomsController < ApplicationController
           RoomUser.create(user_id: params[:follower].to_i, talk_room_id: @room.id)
         end
       end
+    end
+
+    # グループがクリックされた時のルーム判定
+    unless params[:room_id].blank?
+      @room = TalkRoom.find_by(id: params[:room_id])
+      @talks = @room.talk
+      @room_name = @room.room_name
     end
 
     # 知り合いかも？に自分以外のユーザーを表示

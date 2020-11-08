@@ -1,0 +1,11 @@
+- if talk.user_id == current_user.id
+  .user-talk-index__talks--right
+    .time
+      span = talk.created_at.strftime("%H:%M")
+    .talk = talk.talk
+- else
+  .user-talk-index__talks--left
+    .name = talk.user.name
+    .talk = talk.talk
+    .time
+      span = talk.created_at.strftime("%H:%M")

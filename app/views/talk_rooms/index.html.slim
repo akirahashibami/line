@@ -55,9 +55,12 @@
               ul
                 - @entry_room.each do |room|
                   li class="group-room"
-                    / = link_to talk_rooms_path(follower: follower.id), class: "group-talk-show", remote: true do
-                    / = render partial: 'users/attachment', locals: { user: room}
-                    p = room.room_name
+                    = link_to talk_rooms_path(room_id: room.id), class: "user-talk-show", remote: true do
+                      - if room.talk_room_image.attached?
+                        = image_tag(room.talk_room_image)
+                      - else
+                        = image_tag('room.png')
+                      p = room.room_name
             .talk-rooms__list--friends
               span.select-friends-list 友だち
               ul
@@ -127,4 +130,4 @@
     .talk-room-index__talk
       .user-talks
         #talks.user-talks__talk
-            = render partial: "users/user-talk-index", locals: { user: @user, room: @room, talks: @talks}
+            = render partial: "users/user-talk-index", locals: { user: @user, room: @room, talks: @talks, room_name: @room_name}

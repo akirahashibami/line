@@ -11,20 +11,23 @@ $ ->
 
     # 値を受け取った時
     received: (data) ->
-      # サーバーサイドから値を受け取りviewに追加する
-      if data["talk"] != null
-        if data['user_id'] == $('#talk').data('user_id')
-          $('#talk').append('<div class="user-talk-index__talks--right">'+
-                              '<div class="time">'+'<span>'+data["created_at"]+'</span>'+'</div>'+
-                              '<div class="talk">'+  data["talk"]+'</div>'+
-                              '</div>')
-        else
-          $('#talk').append('<div class="user-talk-index__talks--left">'+
-                              '<div class="talk">'+  data["talk"]+'</div>'+
-                              '<div class="time">'+'<span>'+data["created_at"]+'</span>'+'</div>'+
-                              '</div>')
-      else
-        $('#talk').append data['talkhtml']
+      # # サーバーサイドから値を受け取りviewに追加する
+      # if data["talk"] != null
+      #   if data['user_id'] == $('#talk').data('user_id')
+      #     $('#talk').append('<div class="user-talk-index__talks--right">'+
+      #                         '<div class="time">'+'<span>'+data["created_at"]+'</span>'+'</div>'+
+      #                         '<div class="talk">'+  data["talk"]+'</div>'+
+      #                         '</div>')
+      #   else
+      #     $('#talk').append('<div class="user-talk-index__talks--left">'+
+      #                         '<div class="name">'+ data["name"]+'</div>'+
+      #                         '<div class="talk">'+ data["talk"]+'</div>'+
+      #                         '<div class="time">'+'<span>'+data["created_at"]+'</span>'+'</div>'+
+      #                         '</div>')
+      # else
+      #   $('#talk').append data['talkhtml']
+
+      $('#talk').append data['talk']
 
       scroll = $('.user-talk-index__talks');
       scroll.scrollTop(10000);
