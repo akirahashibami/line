@@ -1,7 +1,7 @@
 .content
   .session
     h2.session__title
-      | LINE
+      | KIATAKATool
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .session__field
         = f.email_field :email, placeholder: 'メールアドレスまたは電話番号', class: "session__field--top"
@@ -13,4 +13,8 @@
         .session__remenber
           = f.check_box :remember_me, id: "user_remenber_me"
           = f.label :user_remenber_me, "自動ログイン"
+    .sign-up__login
+      p
+        | 未登録の方は
+        = link_to "こちら", new_user_registration_path
   .qr
