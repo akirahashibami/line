@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_065959) do
+ActiveRecord::Schema.define(version: 2020_11_10_071913) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2020_11_10_065959) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.string "following_id"
-    t.string "follower_id"
+    t.integer "following_id"
+    t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
