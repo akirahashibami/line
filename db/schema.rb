@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2020_11_10_053708) do
     t.integer "year"
     t.integer "month"
     t.integer "day"
-    t.bigint "phone_number"
+    t.integer "phone_number"
     t.string "provider"
     t.string "uid"
     t.string "username"
