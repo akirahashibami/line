@@ -1,5 +1,15 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.after_initialize do
+      Bullet.enable        = false
+      Bullet.alert         = false
+      Bullet.bullet_logger = true
+      Bullet.console       = true
+    # Bullet.growl         = true
+      Bullet.rails_logger  = true
+      Bullet.add_footer    = true
+    end  # Settings specified here will take precedence over those in config/application.rb.
+
 
   # Code is not reloaded between requests.
   config.cache_classes = true
