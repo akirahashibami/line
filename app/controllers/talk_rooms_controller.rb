@@ -52,19 +52,18 @@ class TalkRoomsController < ApplicationController
     @users = User.where.not(id: current_user.id)
 
     # トークが新しい順にトークルームを並べる
-    # if Talk.exists?
-    #   latest_talk = Talk.from(Talk.order(created_at: :asc))
-    #                     .group(:talk_room_id)
-    #                     .select(:talk_room_id)
-    #                     .order(created_at: :desc)
-    #   @latest_talks = Array.new
-    #   binding.pry
-    #   latest_talk.each do |talk|
-    #     room = TalkRoom.find_by(id: talk.talk_room_id)
-    #     unless room.users.where(id: current_user.id).blank?
-    #       @latest_talks.push(room)
-    #     end
-    #   end  
+    if Talk.exists?
+      latest_talk = Talk.from(Talk.order(created_at: :asc))
+                        .group(:talk_room_id)
+                        .select(:talk_room_id)
+                        .order(created_at: :desc)
+      @latest_talks = Array.new
+      latest_talk.each do |talk|
+        room = TalkRoom.find_by(id: talk.talk_room_id)
+        unless room.users.where(id: current_user.id).blank?
+          @latest_talks.push(room)
+        end
+      end
     end
 
     #　自分が参加しているグループトークの表示
