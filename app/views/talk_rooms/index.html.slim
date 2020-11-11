@@ -74,7 +74,7 @@
         .talk__search
         .talk__friends
           ul.talk__friends--list
-            - if @latest_talks.present?
+            / - if @latest_talks.present?
               - @latest_talks.each do |talk|
                 - talk_user = talk.users.where.not(id: current_user.id)
                 li class="latest_talk talk-room-#{talk.id}"
